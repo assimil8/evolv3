@@ -1,5 +1,8 @@
 import tcod as libtcod
 
+"""
+    movement stored and defined as key/val pairs in dictionary
+"""
 
 def handle_keys(key):
     #movement keys, all return dict values that will be

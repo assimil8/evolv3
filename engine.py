@@ -12,12 +12,13 @@ def main():
     map_width = 80
     map_height = 45
 
+    #reminiscent of gdscripts 'quick struct', this is blocked tile vs. passable
     colors = {
-        'dark_wall': libtcod.Color(0,0,100),
-        'dark_ground': libtcod.Color(50, 50, 150)
+        'dark_wall': libtcod.Color(44,0,12),
+        'dark_ground': libtcod.Color(0, 0, 0)
         }
 
-    player = Entity(int(screen_width/2),int(screen_height/2),'@', libtcod.green)
+    player = Entity(int(screen_width/2),int(screen_height/2),'@', libtcod.red)
     npc = Entity(int(screen_height/2 - 5),int(screen_height/2), '@', libtcod.yellow)
     entities = [npc,player]
 
@@ -27,7 +28,10 @@ def main():
     libtcod.console_init_root(screen_width,screen_height,'evolv3',False)
 
     con = libtcod.console_new(screen_width,screen_height)
+
     game_map = GameMap(map_width, map_height)
+    game_map.make_map()
+    
     #store keyboard and mouse input
     key = libtcod.Key()
     mouse = libtcod.Mouse()
@@ -37,8 +41,7 @@ def main():
         #capture new events (user input), update key and mouse vars
         libtcod.sys_check_for_event(libtcod.EVENT_KEY_PRESS,key,mouse)
         render_all(con,entities,game_map,screen_width,screen_height, colors)
-        libtcod.console_set_default_foreground(0,libtcod.white)
-        libtcod.console_put_char(0,player.x,player.y, '@', libtcod.BKGND_NONE)
+        
 
         #flush pushes to screen
         libtcod.console_flush()

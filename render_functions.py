@@ -6,9 +6,10 @@ called in our game loop to draw entities, map,etc. Currently accepts console,
 a list of entities, and the screen w,h as parameters and calls draw_entity on each.
 Then it blits the changes to the screen.
 
-UPDATE: render all now loops through each tile in the game map and checks
+UPDATE00: render all now loops through each tile in the game map and checks
 if it blocks sight or not. If it does, then it draws a wall, if not, it draws
-a floor.
+a floor. Incorporate colors and game_map as render_all arg parameters
+
 """
 def render_all(con, entities, game_map, screen_width, screen_height, colors):
     #draw all tiles in our games map
